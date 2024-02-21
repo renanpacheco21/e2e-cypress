@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "baseUrl": "http://www.automationpractice.pl/index.php",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "types": [
+      "cypress",
+      "@testing-library/cypress"      
+    ]
+  },
+  "include": [
+    "**/*.ts"
+  ]
+}

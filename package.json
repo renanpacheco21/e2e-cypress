@@ -1,0 +1,21 @@
+{
+  "name": "e2e-playwright",
+  "version": "1.0.0",
+  "description": "Automação de Testes Utilizando Playwright",
+  "main": "index.js",
+  "author": "renanpacheco",
+  "license": "MIT",
+  "scripts": {
+    "test": "cypress run --browser chrome --headed",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
+  },
+  "devDependencies": {
+    "@cypress/webpack-preprocessor": "6.0.1",
+    "@testing-library/cypress": "10.0.1",
+    "cypress": "^13.6.5",
+    "ts-loader": "9.5.1",
+    "typescript": "5.3.3",
+    "webpack": "5.90.3"
+  }
+}
