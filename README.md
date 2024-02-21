@@ -16,7 +16,7 @@ End-to-end testing automation project using Cypress.
 ## Project Structure
 The project is organized as follows:
 
-- **Integration**: Contains mappings for test scenarios.
+- **e2e**: Contains mappings for test scenarios.
 - **Support**: Includes project structure files.
   - **Elements**: Maps elements on each screen.
   - **Files**: Other files required for the test.
