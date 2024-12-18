@@ -6,7 +6,8 @@ describe("testes para validação da aplicação da OrangeHRM", () => {
   });
 
   it.only("realizar login com sucesso", function () {
-    
-    cy.contains('button', 'Login').click();
+    cy.get("input[name='username']").type("Admin");
+    cy.get("input[name='password']").type("admin123");
+    cy.contains("button", "Login").click();
   });
 });
