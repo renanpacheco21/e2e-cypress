@@ -45,12 +45,21 @@ describe("testes para validação da aplicação da OrangeHRM", () => {
     cy.contains("Teste Cypress 2024");
   });
 
+  it.only("editar funcionário e incluir as informações do salário", function () {
+    cy.login("Admin", "admin123");
+    cy.acessaBuscaFuncionario();
+    cy.get("i.oxd-icon.bi-pencil-fill").click();
+    cy.contains(".orangehrm-tabs-item", "Salary").click();
+    cy.contains("Assigned Salary Components");
+    cy.contains("button", "Add").eq(0).click();
+    cy.get("input[data-v-1f99f73c]").eq(1).type("Fixo");
+    cy.get(".oxd-select-text-input").eq(2).click().type("CC");
+    cy.get("input[data-v-1f99f73c]").eq(2).type("10000");
+  });
+
   it("excluir funcionário", function () {
     cy.login("Admin", "admin123");
-    cy.contains(".oxd-main-menu-item", "PIM").click();
-    cy.get("input[data-v-75e744cd]").eq(0).type("Teste Cypress 2024");
-    cy.contains("button", "Search").click();
-    cy.contains("(1) Record Found");
+    cy.acessaBuscaFuncionario();
     cy.get(".oxd-icon.bi-trash").click();
     cy.get(".oxd-button--label-danger").click();
     cy.get("#oxd-toaster_1")
