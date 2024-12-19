@@ -38,7 +38,9 @@ describe("testes para validação da aplicação da OrangeHRM", () => {
     cy.get('input[name="lastName"]').type("Cypress 2024");
     cy.get("input[data-v-1f99f73c]").eq(4).invoke("val").should("not.be.empty");
     cy.contains("button", "Save").click();
-    cy.get("#oxd-toaster_1").should("be.visible");
+    cy.get("#oxd-toaster_1")
+      .should("be.visible")
+      .and("contain.text", "Success");
     cy.contains("Personal Details");
     cy.contains("Teste Cypress 2024");
   });
@@ -51,11 +53,13 @@ describe("testes para validação da aplicação da OrangeHRM", () => {
     cy.contains("(1) Record Found");
     cy.get(".oxd-icon.bi-trash").click();
     cy.get(".oxd-button--label-danger").click();
-    cy.get("#oxd-toaster_1").should("be.visible");
+    cy.get("#oxd-toaster_1")
+      .should("be.visible")
+      .and("contain.text", "Success");
     cy.contains("No Records Found");
   });
 
-  it.only("realizar logout com sucesso", function () {
+  it("realizar logout com sucesso", function () {
     cy.login("Admin", "admin123");
     cy.get(".bi-caret-down-fill.oxd-userdropdown-icon").click();
     cy.contains(".oxd-userdropdown-link", "Logout").click();

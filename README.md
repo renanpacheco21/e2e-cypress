@@ -11,9 +11,9 @@ End-to-end testing automation project using Cypress.
 
 ### Running Tests
 
-Run `cypress:run` to run the test in headless mode on a desktop viewport.
+Run `npm run cypress:run` to run the test in headless mode on a desktop viewport.
 
-Or, run `cypress:open` to open Cypress in interactive mode on a desktop
+Or, run `npm run cypress:open` to open Cypress in interactive mode on a desktop
 
 
 ## Project Structure
