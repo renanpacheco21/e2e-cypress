@@ -10,7 +10,10 @@ End-to-end testing automation project using Cypress.
 1. Run the command `npm i --save-dev cypress` to install all project dependencies.
 
 ### Running Tests
-1. Execute `npm test` to run the entire test suite.
+
+Run `cypress:run` to run the test in headless mode on a desktop viewport.
+
+Or, run `cypress:open` to open Cypress in interactive mode on a desktop
 
 
 ## Project Structure
