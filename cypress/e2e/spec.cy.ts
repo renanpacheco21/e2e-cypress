@@ -18,9 +18,21 @@ describe("testes para validação da aplicação da OrangeHRM", () => {
     cy.get(".oxd-alert-content").should("contain.text", "Invalid credentials");
   });
 
-  it.only("Acessar a página de PIM (Employee List)", function () {
+  it("acessar a página de PIM (Employee List)", function () {
     cy.login("Admin", "admin123");
     cy.contains(".oxd-main-menu-item", "PIM").click();
-    cy.contains(".oxd-topbar-body-nav-tab-item", "Employee List").should("be.visible")
+    cy.contains(".oxd-topbar-body-nav-tab-item", "Employee List")
+      .focus()
+      .should("have.focus");
+    cy.url().should(
+      "eq",
+      "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList"
+    );
+  });
+
+  it("adicionar um novo funcionário", function () {
+    cy.login("Admin", "admin123");
+    cy.contains(".oxd-main-menu-item", "PIM").click();
+    cy.contains("button", "Add").click();
   });
 });
