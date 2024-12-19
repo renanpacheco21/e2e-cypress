@@ -30,9 +30,10 @@ describe("testes para validação da aplicação da OrangeHRM", () => {
     );
   });
 
-  it("adicionar um novo funcionário", function () {
+  it.only("adicionar um novo funcionário", function () {
     cy.login("Admin", "admin123");
     cy.contains(".oxd-main-menu-item", "PIM").click();
     cy.contains("button", "Add").click();
+    //y.contains("input", "firstname").type("Teste");
   });
 });
