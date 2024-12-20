@@ -34,8 +34,12 @@ describe("testes para validação da aplicação da OrangeHRM", () => {
     cy.login("Admin", "admin123");
     cy.contains(".oxd-main-menu-item", "PIM").click();
     cy.contains("button", "Add").click();
-    cy.get('input[name="firstName"]').type("Teste");
-    cy.get('input[name="lastName"]').type("Cypress 2024");
+    cy.get('input[name="firstName"]')
+      .type("Teste")
+      .should("have.value", "Teste");
+    cy.get('input[name="lastName"]')
+      .type("Cypress 2024")
+      .should("have.value", "Cypress 2024");
     cy.get("input[data-v-1f99f73c]").eq(4).invoke("val").should("not.be.empty");
     cy.contains("button", "Save").click();
     cy.get("#oxd-toaster_1")
@@ -45,19 +49,32 @@ describe("testes para validação da aplicação da OrangeHRM", () => {
     cy.contains("Teste Cypress 2024");
   });
 
-  it.only("editar funcionário e incluir as informações obrigatórias do salário", function () {
+  it("editar funcionário e incluir as informações obrigatórias do salário", function () {
     cy.login("Admin", "admin123");
     cy.acessaBuscaFuncionario();
     cy.get("i.oxd-icon.bi-pencil-fill").click();
     cy.contains(".orangehrm-tabs-item", "Salary").click();
     cy.contains("Assigned Salary Components");
     cy.contains("button", "Add").eq(0).click();
-    cy.get("input[data-v-1f99f73c]").eq(1).type("Fixo");
-    cy.get(".oxd-select-text-input").eq(2).click(); 
-    cy.contains(".oxd-select-text-input", "Argentina")
-      .should("be.visible")
-      .click();
+    cy.get("input[data-v-1f99f73c]")
+      .eq(1)
+      .type("Fixo")
+      .should("have.value", "Fixo");
+    cy.get(".oxd-select-text-input").eq(2).click();
+    cy.get(".oxd-select-dropdown").contains("Brazilian Real").click();
+    cy.get(".oxd-select-text-input")
+      .eq(2)
+      .should("contain.text", "Brazilian Real");
     cy.get("input[data-v-1f99f73c]").eq(2).type("10000");
+    cy.contains("button", "Save").click();
+    cy.get("#oxd-toaster_1")
+      .should("be.visible")
+      .and("contain.text", "Success");
+    cy.get("div[data-v-6c07a142]").eq(0).should("contain.text", "Fixo");
+    cy.get("div[data-v-6c07a142]").eq(1).should("contain.text", "10000");
+    cy.get("div[data-v-6c07a142]")
+      .eq(2)
+      .should("contain.text", "Brazilian Real");
   });
 
   it("excluir funcionário", function () {
