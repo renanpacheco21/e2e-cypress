@@ -45,7 +45,7 @@ describe("testes para validação da aplicação da OrangeHRM", () => {
     cy.contains("Teste Cypress 2024");
   });
 
-  it.only("editar funcionário e incluir as informações do salário", function () {
+  it.only("editar funcionário e incluir as informações obrigatórias do salário", function () {
     cy.login("Admin", "admin123");
     cy.acessaBuscaFuncionario();
     cy.get("i.oxd-icon.bi-pencil-fill").click();
@@ -53,7 +53,10 @@ describe("testes para validação da aplicação da OrangeHRM", () => {
     cy.contains("Assigned Salary Components");
     cy.contains("button", "Add").eq(0).click();
     cy.get("input[data-v-1f99f73c]").eq(1).type("Fixo");
-    cy.get(".oxd-select-text-input").eq(2).click().type("CC");
+    cy.get(".oxd-select-text-input").eq(2).click(); 
+    cy.contains(".oxd-select-text-input", "Argentina")
+      .should("be.visible")
+      .click();
     cy.get("input[data-v-1f99f73c]").eq(2).type("10000");
   });
 
