@@ -1,4 +1,4 @@
-describe("testes para validação da aplicação da OrangeHRM", () => {
+describe("testes para validação da aplicação da OrangeHRM Demo", () => {
   beforeEach(function () {
     cy.visit(
       "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
@@ -20,10 +20,7 @@ describe("testes para validação da aplicação da OrangeHRM", () => {
 
   it("acessar a página de PIM (Employee List)", function () {
     cy.login("Admin", "admin123");
-    cy.contains(".oxd-main-menu-item", "PIM").click();
-    cy.contains(".oxd-topbar-body-nav-tab-item", "Employee List")
-      .focus()
-      .should("have.focus");
+    cy.acessaEmployeeList();
     cy.url().should(
       "eq",
       "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList"
@@ -32,7 +29,7 @@ describe("testes para validação da aplicação da OrangeHRM", () => {
 
   it("adicionar um novo funcionário", function () {
     cy.login("Admin", "admin123");
-    cy.contains(".oxd-main-menu-item", "PIM").click();
+    cy.acessaEmployeeList();
     cy.contains("button", "Add").click();
     cy.get('input[name="firstName"]')
       .type("Teste")
@@ -51,7 +48,8 @@ describe("testes para validação da aplicação da OrangeHRM", () => {
 
   it("editar funcionário e incluir as informações obrigatórias do salário", function () {
     cy.login("Admin", "admin123");
-    cy.acessaBuscaFuncionario();
+    cy.acessaEmployeeList();
+    cy.buscaFuncionario();
     cy.get("i.oxd-icon.bi-pencil-fill").click();
     cy.contains(".orangehrm-tabs-item", "Salary").click();
     cy.contains("Assigned Salary Components");
@@ -79,9 +77,10 @@ describe("testes para validação da aplicação da OrangeHRM", () => {
 
   it("excluir funcionário", function () {
     cy.login("Admin", "admin123");
-    cy.acessaBuscaFuncionario();
+    cy.acessaEmployeeList();
+    cy.buscaFuncionario();
     cy.get(".oxd-icon.bi-trash").click();
-    cy.get(".oxd-button--label-danger").click();
+    cy.contains("Yes, Delete").click();
     cy.get("#oxd-toaster_1")
       .should("be.visible")
       .and("contain.text", "Success");
